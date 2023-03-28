@@ -1,7 +1,71 @@
-.hello {
-  color: red;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-body {
-  background-color: bisque;
+.site-wrapper {
+  padding: 0.5rem;
+}
+
+.todo-box {
+  border: 1px solid blue;
+  border: solid 1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 1px 1px #ddd;
+  width: 100%;
+}
+
+.todo-box > * {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px rgba(0,0,0,0.2);
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.list-check-and-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#new-item {
+  height: 100%;
+  border: none;
+  outline: none;
+  font-style: italic;
+  color: rgba(0,0,0,0.8);
+}
+
+.submit-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+i {
+  color: rgba(0,0,0,0.2);
+  outline: none;
+  border: none;
+}
+
+.clear-li {
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
+  border-bottom: none;
+}
+
+.clear-li:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

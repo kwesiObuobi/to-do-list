@@ -4,10 +4,50 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Exercise</title>
+  <title>Todo List | Structure</title>
+  <script src="https://kit.fontawesome.com/a0d7ff3ed5.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <h1>Hello Webpack!</h1>
-  <p>Test this p tag working</p>
+  <div class="site-wrapper">
+    <section class="todo-section">
+      <ul class="todo-box">
+        <li class="header-li">Today's To Do <i class="fa-solid fa-rotate"></i></li>
+        <li class="add-to-list">
+          <form class="add-list-form">
+            <input
+              type="text"
+              placeholder="Add to your list..."
+              name="new-item"
+              id="new-item"
+              required
+            >
+            <button type="submit" class="submit-btn"><i class="fa-solid fa-plus"></i></button>
+          </form>
+        </li>
+        <li class="list-item">
+          <div class="list-check-and-name">
+            <input type="checkbox">
+            <span>wash the planes</span>
+          </div>
+          <div class="list-ellipses-box"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        </li>
+        <li class="list-item">
+          <div class="list-check-and-name">
+            <input type="checkbox">
+            <span>wash the dishes</span>
+          </div>
+          <div class="list-ellipses-box"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        </li>
+        <li class="list-item">
+          <div class="list-check-and-name">
+            <input type="checkbox">
+            <span>wash the cars</span>
+          </div>
+          <div class="list-ellipses-box"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        </li>
+        <li class="clear-li">Clear all completed</li>
+      </ul>
+    </section>
+  </div>
 </body>
 </html>
