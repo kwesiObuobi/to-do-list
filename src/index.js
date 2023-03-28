@@ -1,21 +1,21 @@
 import './style.css';
 
 const tasks = [
-  {
-    description: 'Wash Planes',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Wash dishes',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Wash cars',
-    completed: true,
-    index: 2,
-  },
+  // {
+  //   description: 'Wash Planes',
+  //   completed: true,
+  //   index: 1,
+  // },
+  // {
+  //   description: 'Wash dishes',
+  //   completed: false,
+  //   index: 3,
+  // },
+  // {
+  //   description: 'Wash cars',
+  //   completed: true,
+  //   index: 2,
+  // },
 ];
 
 const toDoBox = document.querySelector('.todo-box');
@@ -32,8 +32,6 @@ tasks
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
 
-    // const spn = document.createElement('span');
-    // spn.innerHTML = task.description;
     const itemValInput = document.createElement('input');
     itemValInput.classList.add('list-item-value');
     itemValInput.value = task.description;
@@ -43,7 +41,6 @@ tasks
     listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
 
     listCheckAndName.appendChild(checkbox);
-    // listCheckAndName.appendChild(spn);
     listCheckAndName.appendChild(itemValInput);
 
     listItem.appendChild(listCheckAndName);

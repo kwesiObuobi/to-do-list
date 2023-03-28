@@ -49,6 +49,20 @@ form {
   color: rgba(0, 0, 0, 0.8);
 }
 
+.list-item-value {
+  width: 90%;
+  border: none;
+  outline: none;
+}
+
+.list-item-value:hover {
+  cursor: default;
+}
+
+.list-item-value:focus {
+  cursor: auto;
+}
+
 .submit-btn {
   border: none;
   outline: none;
@@ -70,20 +84,6 @@ i {
 .clear-li:hover {
   cursor: pointer;
   text-decoration: underline;
-}
-
-.list-item-value:hover {
-  cursor: default;
-}
-
-.list-item-value:focus {
-  cursor: auto;
-}
-
-.list-item-value {
-  width: 90%;
-  border: none;
-  outline: none;
 }
 
 @media screen and (min-width: 768px) {
