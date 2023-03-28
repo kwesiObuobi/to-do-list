@@ -32,15 +32,19 @@ tasks
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
 
-    const spn = document.createElement('span');
-    spn.innerHTML = task.description;
+    // const spn = document.createElement('span');
+    // spn.innerHTML = task.description;
+    const itemValInput = document.createElement('input');
+    itemValInput.classList.add('list-item-value');
+    itemValInput.value = task.description;
 
     const listElipsesBox = document.createElement('div');
     listElipsesBox.classList.add('list-ellipses-box');
     listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
 
     listCheckAndName.appendChild(checkbox);
-    listCheckAndName.appendChild(spn);
+    // listCheckAndName.appendChild(spn);
+    listCheckAndName.appendChild(itemValInput);
 
     listItem.appendChild(listCheckAndName);
     listItem.appendChild(listElipsesBox);
