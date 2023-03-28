@@ -14,6 +14,8 @@
   border: solid 1px rgba(0,0,0,0.2);
   box-shadow: 0 0 1px 1px #ddd;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-box > * {
@@ -61,11 +63,17 @@ i {
 .clear-li {
   text-align: center;
   margin: 0 auto;
-  width: 50%;
   border-bottom: none;
 }
 
 .clear-li:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+  .todo-box {
+    width: 70%;
+    margin: 4rem auto 0;
+  }
 }
