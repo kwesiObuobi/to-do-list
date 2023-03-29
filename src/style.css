@@ -24,6 +24,7 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   flex-wrap: wrap;
+  gap: 0.3rem;
 }
 
 .list-check-and-name {
@@ -31,6 +32,7 @@
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  flex: 2;
 }
 
 form {
@@ -45,6 +47,21 @@ form {
   outline: none;
   font-style: italic;
   color: rgba(0, 0, 0, 0.8);
+  width: 90%;
+}
+
+.list-item-value {
+  width: 90%;
+  border: none;
+  outline: none;
+}
+
+.list-item-value:hover {
+  cursor: default;
+}
+
+.list-item-value:focus {
+  cursor: auto;
 }
 
 .submit-btn {
@@ -54,7 +71,7 @@ form {
 }
 
 i {
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.4);
   outline: none;
   border: none;
 }
@@ -68,6 +85,14 @@ i {
 .clear-li:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.none {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 @media screen and (min-width: 768px) {

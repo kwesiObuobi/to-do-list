@@ -1,28 +1,49 @@
 import './style.css';
-
-const tasks = [
-  {
-    description: 'Wash Planes',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Wash dishes',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Wash cars',
-    completed: true,
-    index: 2,
-  },
-];
+import todoList from './todoList.js';
+import { add, update, remove } from './addRemove.js';
 
 const toDoBox = document.querySelector('.todo-box');
 
-tasks
-  .sort((a, b) => a.index - b.index)
-  .forEach((task) => {
+const renderTasks = () => {
+  toDoBox.innerHTML = '';
+
+  const headerLi = document.createElement('li');
+  headerLi.classList.add('header-li');
+  headerLi.innerHTML = 'Today\'s To Do <i class="fa-solid fa-rotate"></i>';
+
+  const addToList = document.createElement('li');
+  addToList.classList.add('add-to-list');
+
+  const form = document.createElement('form');
+  form.classList.add('add-list-form');
+
+  const newItem = document.createElement('input');
+  newItem.id = 'new-item';
+  newItem.type = 'text';
+  newItem.placeholder = 'Add to your list';
+  newItem.setAttribute('required', '');
+
+  const submitBtn = document.createElement('button');
+  submitBtn.classList.add('submit-btn');
+  submitBtn.type = 'submit';
+  submitBtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+
+  toDoBox.appendChild(headerLi);
+  toDoBox.appendChild(addToList);
+  addToList.appendChild(form);
+  form.appendChild(newItem);
+  form.appendChild(submitBtn);
+
+  // Add list item
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    add(newItem);
+    newItem.value = '';
+    renderTasks();
+  });
+
+  todoList.sort((a, b) => a.index - b.index);
+  for (let i = 0; i < todoList.length; i += 1) {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
 
@@ -32,21 +53,59 @@ tasks
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
 
-    const spn = document.createElement('span');
-    spn.innerHTML = task.description;
+    const itemValInput = document.createElement('input');
+    itemValInput.classList.add('list-item-value');
+    itemValInput.value = todoList[i].description;
 
     const listElipsesBox = document.createElement('div');
     listElipsesBox.classList.add('list-ellipses-box');
-    listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
+    listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+
+    const listDelBox = document.createElement('div');
+    listDelBox.classList.add('list-del-box', 'none');
+    listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+
+    // Change ellipses to deleteBtn when the input field is in focus
+    itemValInput.addEventListener('click', () => {
+      const els = document.querySelectorAll('.list-ellipses-box');
+      const dels = document.querySelectorAll('.list-del-box');
+
+      for (let j = 0; j < todoList.length; j += 1) {
+        if (j === i) {
+          dels[j].classList.remove('none');
+          dels[j].classList.add('show');
+
+          els[j].classList.add('none');
+        } else {
+          els[j].classList.remove('none');
+          dels[j].classList.remove('show');
+          dels[j].classList.add('none');
+        }
+      }
+    });
+
+    // Update list item
+    itemValInput.addEventListener('keyup', (e) => {
+      update(i, 'description', e.target.value);
+    });
+
+    // delete list item
+    listDelBox.addEventListener('click', () => {
+      remove(i);
+      renderTasks();
+    });
 
     listCheckAndName.appendChild(checkbox);
-    listCheckAndName.appendChild(spn);
+    listCheckAndName.appendChild(itemValInput);
 
     listItem.appendChild(listCheckAndName);
     listItem.appendChild(listElipsesBox);
+    listItem.appendChild(listDelBox);
 
     toDoBox.appendChild(listItem);
-  });
+  }
+};
+renderTasks();
 
 const clearLi = document.createElement('li');
 clearLi.classList.add('clear-li');
