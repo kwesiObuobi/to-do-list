@@ -6,7 +6,15 @@ const tasks = todoList;
 
 const toDoBox = document.querySelector('.todo-box');
 
+// let countTask = 0;
+localStorage.setItem('countTask', 0);
+
+console.log(todoList[0].description);
+
 const renderTasks = () => {
+  localStorage.setItem('countTask', 0); // test
+  let count = localStorage.getItem('countTask');
+
   toDoBox.innerHTML = '';
   // todoIntro();
   const headerLi = document.createElement('li');
@@ -73,7 +81,14 @@ const renderTasks = () => {
         listElipsesBox.classList.remove('del-btn');
         listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
       });
-      //
+
+      // try updating
+      itemValInput.addEventListener('keyup', (e) => {
+        // console.log(todoList[0].description);
+        // update(Number(count), 'description', e.target.value);
+        todoList[Number(count)].description = e.target.value;
+        localStorage.setItem('todolist', JSON.stringify(todoList));
+      });
 
       listCheckAndName.appendChild(checkbox);
       listCheckAndName.appendChild(itemValInput);
@@ -82,6 +97,11 @@ const renderTasks = () => {
       listItem.appendChild(listElipsesBox);
 
       toDoBox.appendChild(listItem);
+
+      count = Number(count) + 1;
+      if (Number(count) === todoList.length) {
+        count = todoList.length - 1;
+      }
     });
 };
 renderTasks();
