@@ -48,6 +48,8 @@ const renderTasks = () => {
   for (let i = 0; i < todoList.length; i += 1) {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
+    // try
+    // listItem.setAttribute('tabindex', '0');
 
     const listCheckAndName = document.createElement('div');
     listCheckAndName.classList.add('list-check-and-name');
@@ -61,17 +63,29 @@ const renderTasks = () => {
 
     const listElipsesBox = document.createElement('div');
     listElipsesBox.classList.add('list-ellipses-box');
-    listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
+    listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+
+    const listDelBox = document.createElement('div');
+    listDelBox.classList.add('list-del-box', 'none');
+    listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
     // Change ellipses to deleteBtn when the input field is in focus
-    itemValInput.addEventListener('focus', () => {
-      listElipsesBox.classList.add('del-btn');
-      listElipsesBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-    });
+    itemValInput.addEventListener('click', () => {
+      const els = document.querySelectorAll('.list-ellipses-box');
+      const dels = document.querySelectorAll('.list-del-box');
 
-    itemValInput.addEventListener('blur', () => {
-      listElipsesBox.classList.remove('del-btn');
-      listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
+      for (let j = 0; j < todoList.length; j += 1) {
+        if (j === i) {
+          dels[j].classList.remove('none');
+          dels[j].classList.add('show');
+
+          els[j].classList.add('none');
+        } else {
+          els[j].classList.remove('none');
+          dels[j].classList.remove('show');
+          dels[j].classList.add('none');
+        }
+      }
     });
 
     // Update list item
@@ -79,11 +93,27 @@ const renderTasks = () => {
       update(i, 'description', e.target.value);
     });
 
+    // try delete
+    // if (listElipsesBox.classList.contains('del-btn')) {
+    //   const delIcon = document.querySelector('del-btn');
+    //   console.log(delIcon);
+    //   delIcon.addEventListener('click', () => {
+    //     todoList.splice(i, 1);
+    //     localStorage.setItem('todolist', JSON.stringify(todoList));
+    //     renderTasks();
+    //   });
+    // }
+
+    listDelBox.addEventListener('click', () => {
+      console.log(`del ${i} clicked`);
+    });
+
     listCheckAndName.appendChild(checkbox);
     listCheckAndName.appendChild(itemValInput);
 
     listItem.appendChild(listCheckAndName);
     listItem.appendChild(listElipsesBox);
+    listItem.appendChild(listDelBox);
 
     toDoBox.appendChild(listItem);
   }
@@ -95,19 +125,9 @@ clearLi.classList.add('clear-li');
 clearLi.innerHTML = 'Clear all completed';
 toDoBox.appendChild(clearLi);
 
-// const form = document.querySelector('form');
-// const input = document.getElementById('new-item');
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   add(input);
-//   input.value = '';
-//   renderTasks();
-// });
-
-// const submitBtn = document.querySelector('.submit-btn');
-// submitBtn.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   add(value);
-//   value.value = '';
-//   renderTasks();
-// });
+const dels = document.querySelectorAll('del-btn');
+dels.forEach((item) => {
+  item.addEventListener('click', () => {
+    console.log('hei');
+  });
+});

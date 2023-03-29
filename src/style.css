@@ -53,6 +53,7 @@ form {
   width: 90%;
   border: none;
   outline: none;
+  border: solid 1px red;
 }
 
 .list-item-value:hover {
@@ -84,6 +85,14 @@ i {
 .clear-li:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.none {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 @media screen and (min-width: 768px) {
