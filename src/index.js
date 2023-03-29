@@ -1,10 +1,15 @@
 import './style.css';
 import todoList from './todoList.js';
-import { add, update } from './addRemove.js';
-
-const tasks = todoList;
+import { add, update, remove } from './addRemove.js';
 
 const toDoBox = document.querySelector('.todo-box');
+
+// const updateIndices = () => {
+//   for (let i = 0; i < todoList.length; i += 1) {
+//     todoList[i].index = i + 1;
+//   }
+//   localStorage.setItem('todolist', JSON.stringify(todoList));
+// };
 
 const renderTasks = () => {
   toDoBox.innerHTML = '';
@@ -44,12 +49,10 @@ const renderTasks = () => {
     renderTasks();
   });
 
-  tasks.sort((a, b) => a.index - b.index);
+  todoList.sort((a, b) => a.index - b.index);
   for (let i = 0; i < todoList.length; i += 1) {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
-    // try
-    // listItem.setAttribute('tabindex', '0');
 
     const listCheckAndName = document.createElement('div');
     listCheckAndName.classList.add('list-check-and-name');
@@ -94,18 +97,13 @@ const renderTasks = () => {
     });
 
     // try delete
-    // if (listElipsesBox.classList.contains('del-btn')) {
-    //   const delIcon = document.querySelector('del-btn');
-    //   console.log(delIcon);
-    //   delIcon.addEventListener('click', () => {
-    //     todoList.splice(i, 1);
-    //     localStorage.setItem('todolist', JSON.stringify(todoList));
-    //     renderTasks();
-    //   });
-    // }
-
     listDelBox.addEventListener('click', () => {
-      console.log(`del ${i} clicked`);
+      // console.log(`del ${i} clicked`);
+      // todoList.splice(i, 1);
+      // updateIndices();
+      remove(i);
+
+      renderTasks();
     });
 
     listCheckAndName.appendChild(checkbox);
@@ -124,10 +122,3 @@ const clearLi = document.createElement('li');
 clearLi.classList.add('clear-li');
 clearLi.innerHTML = 'Clear all completed';
 toDoBox.appendChild(clearLi);
-
-const dels = document.querySelectorAll('del-btn');
-dels.forEach((item) => {
-  item.addEventListener('click', () => {
-    console.log('hei');
-  });
-});
