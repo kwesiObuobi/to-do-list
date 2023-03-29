@@ -92,7 +92,6 @@ const renderTasks = () => {
     // delete list item
     listDelBox.addEventListener('click', () => {
       remove(i);
-
       renderTasks();
     });
 
