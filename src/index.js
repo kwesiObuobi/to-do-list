@@ -1,15 +1,12 @@
 import './style.css';
 import todoList from './todoList.js';
-import { add } from './addRemove.js';
+import { add, update } from './addRemove.js';
 
 const tasks = todoList;
 
 const toDoBox = document.querySelector('.todo-box');
 
-// let countTask = 0;
 localStorage.setItem('countTask', 0);
-
-console.log(todoList[0].description);
 
 const renderTasks = () => {
   localStorage.setItem('countTask', 0); // test
@@ -51,58 +48,54 @@ const renderTasks = () => {
     renderTasks();
   });
 
-  tasks
-    .sort((a, b) => a.index - b.index)
-    .forEach((task) => {
-      const listItem = document.createElement('li');
-      listItem.classList.add('list-item');
+  tasks.sort((a, b) => a.index - b.index);
+  for (let i = 0; i < todoList.length; i += 1) {
+    const listItem = document.createElement('li');
+    listItem.classList.add('list-item');
 
-      const listCheckAndName = document.createElement('div');
-      listCheckAndName.classList.add('list-check-and-name');
+    const listCheckAndName = document.createElement('div');
+    listCheckAndName.classList.add('list-check-and-name');
 
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
 
-      const itemValInput = document.createElement('input');
-      itemValInput.classList.add('list-item-value');
-      itemValInput.value = task.description;
+    const itemValInput = document.createElement('input');
+    itemValInput.classList.add('list-item-value');
+    itemValInput.value = todoList[i].description;
 
-      const listElipsesBox = document.createElement('div');
-      listElipsesBox.classList.add('list-ellipses-box');
-      listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
+    const listElipsesBox = document.createElement('div');
+    listElipsesBox.classList.add('list-ellipses-box');
+    listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
 
-      // Change ellipses to deleteBtn when the input field is in focus
-      itemValInput.addEventListener('focus', () => {
-        listElipsesBox.classList.add('del-btn');
-        listElipsesBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-      });
-
-      itemValInput.addEventListener('blur', () => {
-        listElipsesBox.classList.remove('del-btn');
-        listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
-      });
-
-      // try updating
-      itemValInput.addEventListener('keyup', (e) => {
-        // console.log(todoList[0].description);
-        // update(Number(count), 'description', e.target.value);
-        todoList[Number(count)].description = e.target.value;
-        localStorage.setItem('todolist', JSON.stringify(todoList));
-      });
-
-      listCheckAndName.appendChild(checkbox);
-      listCheckAndName.appendChild(itemValInput);
-
-      listItem.appendChild(listCheckAndName);
-      listItem.appendChild(listElipsesBox);
-
-      toDoBox.appendChild(listItem);
-
-      count = Number(count) + 1;
-      if (Number(count) === todoList.length) {
-        count = todoList.length - 1;
-      }
+    // Change ellipses to deleteBtn when the input field is in focus
+    itemValInput.addEventListener('focus', () => {
+      listElipsesBox.classList.add('del-btn');
+      listElipsesBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
     });
+
+    itemValInput.addEventListener('blur', () => {
+      listElipsesBox.classList.remove('del-btn');
+      listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical">';
+    });
+
+    // Update list item
+    itemValInput.addEventListener('keyup', (e) => {
+      update(i, 'description', e.target.value);
+    });
+
+    listCheckAndName.appendChild(checkbox);
+    listCheckAndName.appendChild(itemValInput);
+
+    listItem.appendChild(listCheckAndName);
+    listItem.appendChild(listElipsesBox);
+
+    toDoBox.appendChild(listItem);
+
+    count = Number(count) + 1;
+    if (Number(count) === todoList.length) {
+      count = todoList.length - 1;
+    }
+  }
 };
 renderTasks();
 
