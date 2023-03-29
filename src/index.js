@@ -6,14 +6,9 @@ const tasks = todoList;
 
 const toDoBox = document.querySelector('.todo-box');
 
-localStorage.setItem('countTask', 0);
-
 const renderTasks = () => {
-  localStorage.setItem('countTask', 0); // test
-  let count = localStorage.getItem('countTask');
-
   toDoBox.innerHTML = '';
-  // todoIntro();
+
   const headerLi = document.createElement('li');
   headerLi.classList.add('header-li');
   headerLi.innerHTML = 'Today\'s To Do <i class="fa-solid fa-rotate"></i>';
@@ -41,6 +36,7 @@ const renderTasks = () => {
   form.appendChild(newItem);
   form.appendChild(submitBtn);
 
+  // Add list item
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     add(newItem);
@@ -90,11 +86,6 @@ const renderTasks = () => {
     listItem.appendChild(listElipsesBox);
 
     toDoBox.appendChild(listItem);
-
-    count = Number(count) + 1;
-    if (Number(count) === todoList.length) {
-      count = todoList.length - 1;
-    }
   }
 };
 renderTasks();
