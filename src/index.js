@@ -4,13 +4,6 @@ import { add, update, remove } from './addRemove.js';
 
 const toDoBox = document.querySelector('.todo-box');
 
-// const updateIndices = () => {
-//   for (let i = 0; i < todoList.length; i += 1) {
-//     todoList[i].index = i + 1;
-//   }
-//   localStorage.setItem('todolist', JSON.stringify(todoList));
-// };
-
 const renderTasks = () => {
   toDoBox.innerHTML = '';
 
@@ -96,11 +89,8 @@ const renderTasks = () => {
       update(i, 'description', e.target.value);
     });
 
-    // try delete
+    // delete list item
     listDelBox.addEventListener('click', () => {
-      // console.log(`del ${i} clicked`);
-      // todoList.splice(i, 1);
-      // updateIndices();
       remove(i);
 
       renderTasks();
