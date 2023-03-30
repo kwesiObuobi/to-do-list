@@ -122,7 +122,14 @@ const renderTasks = () => {
   clearLi.innerHTML = 'Clear all completed';
   toDoBox.appendChild(clearLi);
 
-  
+  clearLi.addEventListener('click', () => {
+    console.log('clicked');
+    tasks = todoList.filter((item) => item.completed === false);
+    // todoList = tasks;
+    todoList.splice(0, todoList.length, ...tasks);
+    localStorage.setItem('todolist', JSON.stringify(todoList));
+    renderTasks();
+  });
 };
 renderTasks();
 
