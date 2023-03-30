@@ -1,8 +1,10 @@
 import './style.css';
 import todoList from './todoList.js';
 import { add, update, remove } from './addRemove.js';
+import { setCompleted } from './interactive.js';
 
 const toDoBox = document.querySelector('.todo-box');
+let tasks = todoList;
 
 const renderTasks = () => {
   toDoBox.innerHTML = '';
@@ -53,6 +55,15 @@ const renderTasks = () => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
 
+    // checkbox 'completed' functionalities
+    if (todoList[i].completed === true) {
+      checkbox.checked = true;
+    }
+
+    checkbox.addEventListener('change', () => {
+      setCompleted(i);
+    });
+
     const itemValInput = document.createElement('input');
     itemValInput.classList.add('list-item-value');
     itemValInput.value = todoList[i].description;
@@ -66,6 +77,7 @@ const renderTasks = () => {
     listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
     // Change ellipses to deleteBtn when the input field is in focus
+    // eslint-disable-next-line no-loop-func
     itemValInput.addEventListener('click', () => {
       const els = document.querySelectorAll('.list-ellipses-box');
       const dels = document.querySelectorAll('.list-del-box');
@@ -104,10 +116,23 @@ const renderTasks = () => {
 
     toDoBox.appendChild(listItem);
   }
+  // try
+  const clearLi = document.createElement('li');
+  clearLi.classList.add('clear-li');
+  clearLi.innerHTML = 'Clear all completed';
+  toDoBox.appendChild(clearLi);
+
+  
 };
 renderTasks();
 
-const clearLi = document.createElement('li');
-clearLi.classList.add('clear-li');
-clearLi.innerHTML = 'Clear all completed';
-toDoBox.appendChild(clearLi);
+// const clearLi = document.createElement('li');
+// clearLi.classList.add('clear-li');
+// clearLi.innerHTML = 'Clear all completed';
+// toDoBox.appendChild(clearLi);
+
+// clearLi.addEventListener('click', () => {
+//   tasks = todoList.filter((item) => item.completed === false);
+//   localStorage.setItem('todolist', JSON.stringify(tasks));
+//   renderTasks();
+// });
