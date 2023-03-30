@@ -1,6 +1,8 @@
 import './style.css';
 import todoList from './todoList.js';
-import { add, update, remove } from './addRemove.js';
+import {
+  add, update, updateIndexes, remove,
+} from './addRemove.js';
 import { setCompleted } from './interactive.js';
 
 const toDoBox = document.querySelector('.todo-box');
@@ -77,7 +79,6 @@ const renderTasks = () => {
     listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
     // Change ellipses to deleteBtn when the input field is in focus
-    // eslint-disable-next-line no-loop-func
     itemValInput.addEventListener('click', () => {
       const els = document.querySelectorAll('.list-ellipses-box');
       const dels = document.querySelectorAll('.list-del-box');
@@ -127,6 +128,7 @@ const renderTasks = () => {
     tasks = todoList.filter((item) => item.completed === false);
     // todoList = tasks;
     todoList.splice(0, todoList.length, ...tasks);
+    updateIndexes();
     localStorage.setItem('todolist', JSON.stringify(todoList));
     renderTasks();
   });
