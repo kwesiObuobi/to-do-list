@@ -124,9 +124,7 @@ const renderTasks = () => {
   toDoBox.appendChild(clearLi);
 
   clearLi.addEventListener('click', () => {
-    console.log('clicked');
     tasks = todoList.filter((item) => item.completed === false);
-    // todoList = tasks;
     todoList.splice(0, todoList.length, ...tasks);
     updateIndexes();
     localStorage.setItem('todolist', JSON.stringify(todoList));
@@ -134,14 +132,3 @@ const renderTasks = () => {
   });
 };
 renderTasks();
-
-// const clearLi = document.createElement('li');
-// clearLi.classList.add('clear-li');
-// clearLi.innerHTML = 'Clear all completed';
-// toDoBox.appendChild(clearLi);
-
-// clearLi.addEventListener('click', () => {
-//   tasks = todoList.filter((item) => item.completed === false);
-//   localStorage.setItem('todolist', JSON.stringify(tasks));
-//   renderTasks();
-// });

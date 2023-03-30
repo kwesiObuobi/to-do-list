@@ -23,11 +23,6 @@ export const updateIndexes = () => {
 
 export const remove = (position) => {
   todolist.splice(position, 1);
-
-  // update indices
-  // for (let i = 0; i < todolist.length; i += 1) {
-  //   todolist[i].index = i + 1;
-  // }
   updateIndexes();
   localStorage.setItem('todolist', JSON.stringify(todolist));
 };
