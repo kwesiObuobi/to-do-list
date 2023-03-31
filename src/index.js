@@ -79,23 +79,23 @@ const renderTasks = () => {
     listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
     // Change ellipses to deleteBtn when the input field is in focus
-    itemValInput.addEventListener('click', () => {
-      const els = document.querySelectorAll('.list-ellipses-box');
-      const dels = document.querySelectorAll('.list-del-box');
+    // itemValInput.addEventListener('click', () => {
+    //   const els = document.querySelectorAll('.list-ellipses-box');
+    //   const dels = document.querySelectorAll('.list-del-box');
 
-      for (let j = 0; j < todoList.length; j += 1) {
-        if (j === i) {
-          dels[j].classList.remove('none');
-          dels[j].classList.add('show');
+    //   for (let j = 0; j < todoList.length; j += 1) {
+    //     if (j === i) {
+    //       dels[j].classList.remove('none');
+    //       dels[j].classList.add('show');
 
-          els[j].classList.add('none');
-        } else {
-          els[j].classList.remove('none');
-          dels[j].classList.remove('show');
-          dels[j].classList.add('none');
-        }
-      }
-    });
+    //       els[j].classList.add('none');
+    //     } else {
+    //       els[j].classList.remove('none');
+    //       dels[j].classList.remove('show');
+    //       dels[j].classList.add('none');
+    //     }
+    //   }
+    // });
 
     // Update list item
     itemValInput.addEventListener('keyup', (e) => {
