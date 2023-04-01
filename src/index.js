@@ -117,7 +117,8 @@ const renderTasks = () => {
 
     toDoBox.appendChild(listItem);
   }
-  // try
+
+  // Clear all completed
   const clearLi = document.createElement('li');
   clearLi.classList.add('clear-li');
   clearLi.innerHTML = 'Clear all completed';
