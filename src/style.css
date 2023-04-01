@@ -27,6 +27,10 @@
   gap: 0.3rem;
 }
 
+.list-h3 {
+  margin: 1rem auto;
+}
+
 .list-check-and-name {
   display: flex;
   align-items: center;
@@ -99,5 +103,10 @@ i {
   .todo-box {
     width: 65%;
     margin: 4rem auto 0;
+  }
+
+  .list-h3 {
+    width: 65%;
+    margin: 1rem auto 0;
   }
 }
