@@ -66,17 +66,17 @@ const renderTasks = () => {
     //   setCompleted(i);
     // });
 
-    // const itemValInput = document.createElement('input');
-    // itemValInput.classList.add('list-item-value');
-    // itemValInput.value = todoList[i].description;
+    const itemValInput = document.createElement('input');
+    itemValInput.classList.add('list-item-value');
+    itemValInput.value = todoList[i].description;
 
-    // const listElipsesBox = document.createElement('div');
-    // listElipsesBox.classList.add('list-ellipses-box');
-    // listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+    const listElipsesBox = document.createElement('div');
+    listElipsesBox.classList.add('list-ellipses-box');
+    listElipsesBox.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
 
-    // const listDelBox = document.createElement('div');
-    // listDelBox.classList.add('list-del-box', 'none');
-    // listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+    const listDelBox = document.createElement('div');
+    listDelBox.classList.add('list-del-box', 'none');
+    listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
     // Change ellipses to deleteBtn when the input field is in focus
     // itemValInput.addEventListener('click', () => {
@@ -108,14 +108,14 @@ const renderTasks = () => {
     //   renderTasks();
     // });
 
-    // listCheckAndName.appendChild(checkbox);
-    // listCheckAndName.appendChild(itemValInput);
+    listCheckAndName.appendChild(checkbox);
+    listCheckAndName.appendChild(itemValInput);
 
-    // listItem.appendChild(listCheckAndName);
-    // listItem.appendChild(listElipsesBox);
-    // listItem.appendChild(listDelBox);
+    listItem.appendChild(listCheckAndName);
+    listItem.appendChild(listElipsesBox);
+    listItem.appendChild(listDelBox);
 
-    // toDoBox.appendChild(listItem);
+    toDoBox.appendChild(listItem);
   }
 
   // try
