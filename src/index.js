@@ -1,9 +1,9 @@
 import './style.css';
 import todoList from './todoList.js';
-// import {
-//   add, update, updateIndexes, remove,
-// } from './addRemove.js';
-// import { setCompleted } from './interactive.js';
+import {
+  add, update, updateIndexes, remove,
+} from './addRemove.js';
+import { setCompleted } from './interactive.js';
 
 const toDoBox = document.querySelector('.todo-box');
 let tasks = todoList;
@@ -41,7 +41,7 @@ const renderTasks = () => {
   // Add list item
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    // add(newItem);
+    add(newItem);
     newItem.value = '';
     renderTasks();
   });
@@ -58,13 +58,13 @@ const renderTasks = () => {
     checkbox.type = 'checkbox';
 
     // checkbox 'completed' functionalities
-    // if (todoList[i].completed === true) {
-    //   checkbox.checked = true;
-    // }
+    if (todoList[i].completed === true) {
+      checkbox.checked = true;
+    }
 
-    // checkbox.addEventListener('change', () => {
-    //   setCompleted(i);
-    // });
+    checkbox.addEventListener('change', () => {
+      setCompleted(i);
+    });
 
     const itemValInput = document.createElement('input');
     itemValInput.classList.add('list-item-value');
@@ -79,34 +79,34 @@ const renderTasks = () => {
     listDelBox.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
     // Change ellipses to deleteBtn when the input field is in focus
-    // itemValInput.addEventListener('click', () => {
-    //   const els = document.querySelectorAll('.list-ellipses-box');
-    //   const dels = document.querySelectorAll('.list-del-box');
+    itemValInput.addEventListener('click', () => {
+      const els = document.querySelectorAll('.list-ellipses-box');
+      const dels = document.querySelectorAll('.list-del-box');
 
-    //   for (let j = 0; j < todoList.length; j += 1) {
-    //     if (j === i) {
-    //       dels[j].classList.remove('none');
-    //       dels[j].classList.add('show');
+      for (let j = 0; j < todoList.length; j += 1) {
+        if (j === i) {
+          dels[j].classList.remove('none');
+          dels[j].classList.add('show');
 
-    //       els[j].classList.add('none');
-    //     } else {
-    //       els[j].classList.remove('none');
-    //       dels[j].classList.remove('show');
-    //       dels[j].classList.add('none');
-    //     }
-    //   }
-    // });
+          els[j].classList.add('none');
+        } else {
+          els[j].classList.remove('none');
+          dels[j].classList.remove('show');
+          dels[j].classList.add('none');
+        }
+      }
+    });
 
     // Update list item
-    // itemValInput.addEventListener('keyup', (e) => {
-    //   update(i, 'description', e.target.value);
-    // });
+    itemValInput.addEventListener('keyup', (e) => {
+      update(i, 'description', e.target.value);
+    });
 
     // delete list item
-    // listDelBox.addEventListener('click', () => {
-    //   remove(i);
-    //   renderTasks();
-    // });
+    listDelBox.addEventListener('click', () => {
+      remove(i);
+      renderTasks();
+    });
 
     listCheckAndName.appendChild(checkbox);
     listCheckAndName.appendChild(itemValInput);
@@ -127,7 +127,7 @@ const renderTasks = () => {
   clearLi.addEventListener('click', () => {
     tasks = todoList.filter((item) => item.completed === false);
     todoList.splice(0, todoList.length, ...tasks);
-    // updateIndexes();
+    updateIndexes();
     localStorage.setItem('todolist', JSON.stringify(todoList));
     renderTasks();
   });
