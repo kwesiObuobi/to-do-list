@@ -2,7 +2,7 @@ import todolist from './todoList.js';
 
 export const add = (task) => {
   todolist.push({
-    description: task.value,
+    description: task,
     completed: false,
     index: todolist.length + 1,
   });

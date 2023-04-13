@@ -41,7 +41,7 @@ const renderTasks = () => {
   // Add list item
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    add(newItem);
+    add(newItem.value);
     newItem.value = '';
     renderTasks();
   });
