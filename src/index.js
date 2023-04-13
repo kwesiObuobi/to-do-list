@@ -1,12 +1,11 @@
 import './style.css';
 import todoList from './todoList.js';
 import {
-  add, update, updateIndexes, remove,
+  add, update, remove,
 } from './addRemove.js';
-import { setCompleted } from './interactive.js';
+import { clearAllCompleted, setCompleted } from './interactive.js';
 
 const toDoBox = document.querySelector('.todo-box');
-let tasks = todoList;
 
 const renderTasks = () => {
   toDoBox.innerHTML = '';
@@ -125,10 +124,7 @@ const renderTasks = () => {
   toDoBox.appendChild(clearLi);
 
   clearLi.addEventListener('click', () => {
-    tasks = todoList.filter((item) => item.completed === false);
-    todoList.splice(0, todoList.length, ...tasks);
-    updateIndexes();
-    localStorage.setItem('todolist', JSON.stringify(todoList));
+    clearAllCompleted();
     renderTasks();
   });
 };
